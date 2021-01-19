@@ -1,0 +1,42 @@
+<meta charset="utf8"><html>
+<body>
+<script src="jquery.min.js"></script>
+<input type="button" οnclick="btnShareFriends()" value='分享给微信好友'> </input>
+<br/>
+<input type="button" οnclick="btnWeixinShare()" value='分享到微信朋友圈'> </input>
+<script type="text/javascript">
+    function btnShareFriends() {
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) && typeof (ucweb) != "undefined") {
+            var Browser = new Object();
+            Browser.ios = /ios/.test(Browser.userAgent); //判断ios系统 
+            var title = "测试分享到朋友圈";
+            var img = "";
+            var url = location.href;
+            if (Browser.ios) {
+                ucbrowser.web_share(title, img, url, 'kWeixin', '', '@39yst', '');
+            } else {
+                ucweb.startRequest("shell.page_share", [title, img, url, 'WechatFriends', '', '', '']);
+            }
+        }else{
+            alert("请使用手机UC浏览器进行分享");
+        }
+    }
+    function btnWeixinShare(){
+        if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) && typeof (ucweb) != "undefined") {
+            var Browser = new Object();
+            Browser.ios = /ios/.test(Browser.userAgent); //判断ios系统 
+            var title = "测试分享到朋友圈";
+            var img = "";
+            var url = location.href;
+            if (Browser.ios) {
+                ucbrowser.web_share(title, img, url, 'kWeixinFriend', '', '@39yst', '');
+            } else {
+                ucweb.startRequest("shell.page_share", [title, img, url, 'WechatTimeline', '', '', '']);
+            }
+        }else{
+            alert("请使用手机UC浏览器进行分享");
+        }
+    }
+</script>
+</body>
+</html>
